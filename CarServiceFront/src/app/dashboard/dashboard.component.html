@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark bg-secondary">
+  <a class="navbar-brand text-white">Car Service Appointments</a>
+  <button class = "btn btn-danger" (click)="onLogout()">Logout</button>
+</nav>
+
+
+<form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmitBooking(form)">
+
+
+  <div class="form-group">
+    <label>Choose a date</label>
+    <input type="date" class="form-control" #BookingDate="ngModel" name="BookingDate" [(ngModel)]="formModel.BookingDate" required>
+  </div>
+
+  <div class="form-group">
+    <label>Car model</label>
+    <input class="form-control" #CarModel="ngModel" name="CarModel" [(ngModel)]="formModel.CarModel" required>
+  </div>
+  <div class="form-group">
+    <label>Describe the car problem</label>
+    <input class="form-control" #CarProblem="ngModel" name="CarProblem" [(ngModel)]="formModel.CarProblem" required>
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8 offset-md-2">
+      <button type="submit" class="btn btn-lg btn-block" [disabled]="form.invalid">Make appointment</button>
+    </div>
+  </div>
+</form>
