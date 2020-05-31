@@ -5,6 +5,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth/auth.guard';
 import {MyBookingsComponent} from './my-bookings/my-bookings.component';
+import {StatusComponent} from './status/status.component';
 
 
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
    { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard]},
    { path: 'my-bookings', component: MyBookingsComponent},
-   { path: 'login', component: LoginComponent}
+   { path: 'login', component: LoginComponent},
+  {path:'status',component:StatusComponent}
 ];
 
 @NgModule({

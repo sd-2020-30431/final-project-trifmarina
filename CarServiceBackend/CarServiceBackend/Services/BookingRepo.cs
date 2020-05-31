@@ -29,6 +29,35 @@ namespace CarServiceBackend.Services
             return all_b;
         }
 
+        public IList<Booking> GetAllBookingsUser(int id)
+        {
+            IList<Booking> all_b = _bookingContext.Bookings.Where(p => p.UserId == id).ToList();
+            return all_b;
+        }
+
+        public void updateApproved(int id,bool val)
+        {
+            Booking b = _bookingContext.Bookings.Where(p => p.BookingId == id).FirstOrDefault();
+            b.Approved = val;
+            _bookingContext.SaveChanges();
+        }
+
+        public void updateWorking(int id,bool val)
+        {
+            Booking b = _bookingContext.Bookings.Where(p => p.BookingId == id).FirstOrDefault();
+            b.Approved = false;
+            b.Working = val;
+            _bookingContext.SaveChanges();
+        }
+
+        public void updateReady(int id,bool val)
+        {
+            Booking b = _bookingContext.Bookings.Where(p => p.BookingId == id).FirstOrDefault();
+            b.Approved = false;
+            b.Working = false;
+            b.Ready = val;
+            _bookingContext.SaveChanges();
+        }
 
     }
 }

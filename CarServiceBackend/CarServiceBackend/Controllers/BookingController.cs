@@ -23,6 +23,14 @@ namespace CarServiceBackend.Controllers
             return _bookingRepository.GetAllBookings();
         }
 
+        // GET: api/Booking/GetAll
+        [HttpGet("GetAll/{id}")]
+    
+        public IEnumerable<Booking> GetAllBookingsUser(int id)
+        {
+            return _bookingRepository.GetAllBookingsUser(id);
+        }
+
         // POST: api/Booking/Add
         [HttpPost]
         [Route("Add")]
@@ -36,6 +44,31 @@ namespace CarServiceBackend.Controllers
             b.Working = false;
             b.Ready = false;
             _bookingRepository.createBooking(b);
+            return NoContent();
+        }
+
+        [HttpPut("Approved/{id}")]
+        public ActionResult PutApproved(int id, [FromBody] bool value)
+        {
+            _bookingRepository.updateApproved(id,value);
+            return NoContent();
+        }
+
+        [HttpPut("Working/{id}")]
+        
+
+        public ActionResult PutWorking(int id, [FromBody] bool value)
+        {
+            _bookingRepository.updateWorking(id,value);
+            return NoContent();
+        }
+
+        [HttpPut("Ready/{id}")]
+        
+
+        public ActionResult PutReady(int id, [FromBody] bool value)
+        {
+            _bookingRepository.updateReady(id,value);
             return NoContent();
         }
 

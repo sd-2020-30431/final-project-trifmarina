@@ -3,6 +3,9 @@ import {Router} from '@angular/router';
 import {Booking} from '../models/booking';
 import {BookingService} from '../services/booking.service';
 import {NgForm} from '@angular/forms';
+import {User} from '../models/user';
+import {UserService} from '../services/user.service';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,15 +22,102 @@ export class DashboardComponent implements OnInit {
   }
 
   b: Booking;
+  uDetails: any;
+  bookings: any;
+  message: string;
   constructor(private router: Router,
-              private serviceB: BookingService) { }
+              private serviceB: BookingService,
+              private serviceU: UserService,
+              private serviceData: DataService) { }
+
+  goToAddApproved(id:number){
+    this.serviceB.updateBookingA(id,true).subscribe(
+      res=>{
+        console.log(res);
+      },
+      err=>
+      {
+        console.log(err);
+      }
+    );
+    this.router.navigate(['/status']);
+  }
+
+  goToAddWorking(id:number){
+    this.serviceB.updateBookingW(id,true).subscribe(
+      res=>{
+        console.log(res);
+      },
+      err=>
+      {
+        console.log(err);
+      }
+    );
+    this.router.navigate(['/status']);
+  }
+
+  goToAddReady(id:number){
+    this.serviceB.updateBookingR(id,true).subscribe(
+      res=>{
+        console.log(res);
+      },
+      err=>
+      {
+        console.log(err);
+      }
+    );
+    this.router.navigate(['/status']);
+  }
+
 
   ngOnInit(): void {
+    this.serviceU.getUserProfile().subscribe(
+      res=>{
+        this.uDetails = res;
+        console.log(this.uDetails);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+
+    this.serviceB.getAllBookings().subscribe(
+      res=>{
+        this.bookings = res;
+        console.log(res);
+      },
+      err=>{
+        console.log(err);
+      }
+
+    );
+
+    this.serviceData.currentMessage.subscribe(message => this.message = message)
+
+    // let btnA = document.getElementById("coolbuttonA");
+    // let btnW = document.getElementById("coolbuttonW");
+    // let btnR = document.getElementById("coolbuttonR");
+    //
+    // if (btnA) {
+    //   btnA.addEventListener("click", (e: Event) => this.goToAddApproved());
+    // }
+    // if (btnW) {
+    //   btnW.addEventListener("click", (e: Event) => this.goToAddWorking());
+    // }
+    // if (btnR) {
+    //   btnR.addEventListener("click", (e: Event) => this.goToAddReady());
+    // }
+
   }
 
   onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  onMy(id:number) {
+    this.serviceData.changeMessage(id.toString());
+    this.router.navigate(['/my-bookings']);
   }
 
   onSubmitBooking(form:NgForm){

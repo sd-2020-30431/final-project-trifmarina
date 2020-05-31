@@ -1,0 +1,35 @@
+.btnmy{
+  margin-left: 64rem;
+}
+
+.formboo{
+  margin-top: 5rem;
+  margin-left: 22rem;
+  margin-right: 22rem;
+}
+
+.desc{
+  height: 7rem;
+}
+
+ul {
+  list-style-type: none;
+}
+.rowz{
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.cxx{
+  margin-left: 3rem;
+  margin-top: -4px;
+}
+.svg-iconw path {
+  fill: #EE7519;
+}
+.svg-icona path {
+  fill: #19AEEE;
+}
+.svg-iconr path{
+  fill: #18A526;
+}

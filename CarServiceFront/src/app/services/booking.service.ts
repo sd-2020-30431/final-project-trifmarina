@@ -29,5 +29,22 @@ export class BookingService {
     return this.http.get(`${this.conf.getApiURI()}/api/Booking`);
   }
 
+  getAllBookingsForUser(id:number){
+    return this.http.get(`${this.conf.getApiURI()}/api/Booking/GetAll/${id}`);
+  }
+
+  updateBookingA(id:number,val:boolean){
+    return this.http.put(`${this.conf.getApiURI()}/api/Booking/Approved/${id}`,true,httpOpt);
+  }
+
+  updateBookingW(id:number,val:boolean){
+    return this.http.put(`${this.conf.getApiURI()}/api/Booking/Working/${id}`,true,httpOpt);
+  }
+
+  updateBookingR(id:number,val:boolean){
+    console.log("pfsdfs");
+    console.log(id);
+    return this.http.put(`${this.conf.getApiURI()}/api/Booking/Ready/${id}`,true,httpOpt);
+  }
 
 }

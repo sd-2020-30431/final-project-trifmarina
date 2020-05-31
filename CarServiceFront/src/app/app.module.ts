@@ -12,6 +12,7 @@ import {UserService} from './services/user.service';
 import {ConfigService} from './services/config.service';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
+import { StatusComponent } from './status/status.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    MyBookingsComponent
+    MyBookingsComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
