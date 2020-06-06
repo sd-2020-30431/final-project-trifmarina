@@ -3,7 +3,7 @@
   <li *ngFor="let b of bookings">
     <div class="card m-5" style="width:16rem">
       <div class="row rowz">
-        <div class="column">
+        <div class="column" [appColorChange]="color" (mouseenter) ="mouseEnter('div a',b.working,b.ready)">
         <p><strong>Booking nr. </strong>{{b.bookingId}}</p>
         <p>{{b.bookingDate}}</p>
         <p>{{b.carModel}}</p>

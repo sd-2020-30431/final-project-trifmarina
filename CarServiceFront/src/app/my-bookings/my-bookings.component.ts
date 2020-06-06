@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {BookingService} from '../services/booking.service';
 import {UserService} from '../services/user.service';
 import {DataService} from '../services/data.service';
+import {FacadeService} from '../services/facade.service';
 
 @Component({
   selector: 'app-my-bookings',
@@ -14,11 +15,11 @@ export class MyBookingsComponent implements OnInit {
   bookings: any;
   //userD: any;
   message:string;
+  color:string;
 
   constructor(private router:Router,
-              private serviceB: BookingService,
-              private data:DataService,
-              private serviceU: UserService) { }
+              private facadeService: FacadeService,
+              private data:DataService) { }
 
   ngOnInit(): void {
     this.data.currentMessage.subscribe(message => this.message = message)
@@ -34,7 +35,7 @@ export class MyBookingsComponent implements OnInit {
     // );
 
 
-    this.serviceB.getAllBookingsForUser(+this.message).subscribe(
+    this.facadeService.getAllBookingsForUser(+this.message).subscribe(
       res=>{
         this.bookings = res;
         //console.log(this.bookings.Approved);
@@ -45,6 +46,16 @@ export class MyBookingsComponent implements OnInit {
       }
 
     );
+  }
+
+  mouseEnter(div : string,bw:boolean,br:boolean){
+
+    if(bw){
+      this.color = 'orange';
+    } else{
+      if (br)
+        this.color = 'green';
+    }
   }
 
 }

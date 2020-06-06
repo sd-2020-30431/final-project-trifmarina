@@ -13,6 +13,8 @@ import {ConfigService} from './services/config.service';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { StatusComponent } from './status/status.component';
+import { ColorChangeDirective } from './my-bookings/color-change.directive';
+import {FacadeService} from './services/facade.service';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { StatusComponent } from './status/status.component';
     DashboardComponent,
     LoginComponent,
     MyBookingsComponent,
-    StatusComponent
+    StatusComponent,
+    ColorChangeDirective
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { StatusComponent } from './status/status.component';
     useClass: AuthInterceptor,
     multi: true
   },
-    ConfigService],
+    ConfigService,
+    FacadeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

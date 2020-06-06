@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {FacadeService} from '../services/facade.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     Password: ''
   };
 
-  constructor(private service: UserService,
+  constructor(
+              private facadeService: FacadeService,
               private router: Router,
               private toastr: ToastrService) { }
 
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form:NgForm) {
-    this.service.login(form.value).subscribe(
+    this.facadeService.login(form.value).subscribe(
       (response:any)=>{
         localStorage.setItem('token',response.token);
         this.router.navigateByUrl('/dashboard');

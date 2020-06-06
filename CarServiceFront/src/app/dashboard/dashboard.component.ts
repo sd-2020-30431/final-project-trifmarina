@@ -6,6 +6,7 @@ import {NgForm} from '@angular/forms';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {DataService} from '../services/data.service';
+import {FacadeService} from '../services/facade.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,12 +27,11 @@ export class DashboardComponent implements OnInit {
   bookings: any;
   message: string;
   constructor(private router: Router,
-              private serviceB: BookingService,
-              private serviceU: UserService,
+              private facadeService: FacadeService,
               private serviceData: DataService) { }
 
   goToAddApproved(id:number){
-    this.serviceB.updateBookingA(id,true).subscribe(
+    this.facadeService.updateBookingA(id,true).subscribe(
       res=>{
         console.log(res);
       },
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToAddWorking(id:number){
-    this.serviceB.updateBookingW(id,true).subscribe(
+    this.facadeService.updateBookingW(id,true).subscribe(
       res=>{
         console.log(res);
       },
@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToAddReady(id:number){
-    this.serviceB.updateBookingR(id,true).subscribe(
+    this.facadeService.updateBookingR(id,true).subscribe(
       res=>{
         console.log(res);
       },
@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.serviceU.getUserProfile().subscribe(
+    this.facadeService.getUserProfile().subscribe(
       res=>{
         this.uDetails = res;
         console.log(this.uDetails);
@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    this.serviceB.getAllBookings().subscribe(
+    this.facadeService.getAllBookings().subscribe(
       res=>{
         this.bookings = res;
         console.log(res);
@@ -132,7 +132,7 @@ export class DashboardComponent implements OnInit {
       1
     );
 
-    this.serviceB.addBooking(this.b).subscribe(
+    this.facadeService.addBooking(this.b).subscribe(
       (res:any)=>{
         console.log(res);
         this.router.navigateByUrl('/my-bookings');
